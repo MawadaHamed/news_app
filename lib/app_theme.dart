@@ -6,6 +6,7 @@ class AppTheme {
   static const Color red = Color(0xFFC91C22);
   static const Color white = Color(0xFFFFFFFF);
   static const Color navy = Color(0xFF4F5A69);
+  static const Color gray = Color(0xFF4F5A69);
 
   static ThemeData lightTheme = ThemeData(
       appBarTheme: AppBarTheme(
@@ -22,10 +23,11 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: Colors.transparent,
       textTheme: TextTheme(
-        titleLarge: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-          color: white,
-        ),
-      ));
+          titleLarge: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: white,
+          ),
+          titleSmall: TextStyle(
+              fontSize: 14, fontWeight: FontWeight.w400, color: primary)));
 }

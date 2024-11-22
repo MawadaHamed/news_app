@@ -4,6 +4,8 @@ import 'package:flutter_application_1/categries/category_item.dart';
 import 'package:flutter_application_1/models/category_model.dart';
 
 class CategoriesGrid extends StatelessWidget {
+  CategoriesGrid({required this.onCategorySelected});
+  void Function(CategoryModel) onCategorySelected;
   @override
   Widget build(BuildContext context) {
     List<CategoryModel> categories = List.generate(
