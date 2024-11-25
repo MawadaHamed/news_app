@@ -8,13 +8,38 @@ class CategoriesGrid extends StatelessWidget {
   void Function(CategoryModel) onCategorySelected;
   @override
   Widget build(BuildContext context) {
-    List<CategoryModel> categories = List.generate(
-        6,
-        (index) => CategoryModel(
-            color: AppTheme.red,
-            id: '$index',
-            imageName: 'sports',
-            name: 'sports'));
+    List<CategoryModel> categories = [
+      CategoryModel(
+          color: AppTheme.red,
+          id: 'sports',
+          imageName: 'sports',
+          name: 'sports'),
+      CategoryModel(
+          color: Color(0xFF003E90),
+          id: 'general',
+          imageName: 'politics',
+          name: 'Politics'),
+      CategoryModel(
+          color: Color(0xFFED1E79),
+          id: 'health',
+          imageName: 'health',
+          name: 'Health'),
+      CategoryModel(
+          color: Color(0xFFCF7E48),
+          id: 'business',
+          imageName: 'bussines',
+          name: 'Business'),
+      CategoryModel(
+          color: Color(0xFF4882CF),
+          id: 'general',
+          imageName: 'environment',
+          name: 'Environment'),
+      CategoryModel(
+          color: Color(0xFFF2D352),
+          id: 'science',
+          imageName: 'science',
+          name: 'Science')
+    ];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -38,10 +63,18 @@ class CategoriesGrid extends StatelessWidget {
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
               ),
-              itemBuilder: (_, index) => CategoryItem(
-                category: categories[index],
-                index: index,
-              ),
+              itemBuilder: (_, index) {
+                CategoryModel category = categories[index];
+                return GestureDetector(
+                  onTap: () {
+                    onCategorySelected(category);
+                  },
+                  child: CategoryItem(
+                    category: category,
+                    index: index,
+                  ),
+                );
+              },
               itemCount: categories.length,
             ),
           )
