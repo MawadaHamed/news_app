@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/source.dart';
+import 'package:flutter_application_1/models/sources_response/source.dart';
 import 'package:flutter_application_1/news/news_list.dart';
 import 'package:flutter_application_1/tabs/tab_item.dart';
 
@@ -31,7 +31,7 @@ class _SourceTabState extends State<SourceTab> {
             tabs: widget.sources
                 .map(
                   (Source) => TabItem(
-                    sourceName: Source.name,
+                    sourceName: Source.name ?? '',
                     isSelected:
                         widget.sources.indexOf(Source) == selectedTabIndex,
                   ),
@@ -40,7 +40,7 @@ class _SourceTabState extends State<SourceTab> {
           ),
         ),
         Expanded(
-          child: NewsList(),
+          child: NewsList(widget.sources[selectedTabIndex].id!),
         )
       ],
     );

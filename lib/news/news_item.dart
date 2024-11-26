@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app_theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_application_1/models/news_response/article.dart';
 import 'package:flutter_application_1/widget/loading_indicator.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NewsItem extends StatelessWidget {
+  NewsItem(this.article);
+  final Article article;
   @override
   Widget build(BuildContext context) {
     TextStyle? titleSmallStyle = Theme.of(context).textTheme.titleSmall;
-    final fifteenAgo = DateTime.now().subtract(Duration(minutes: 15));
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       child: Column(
@@ -17,7 +20,8 @@ class NewsItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: CachedNetworkImage(
-              imageUrl: '',
+              imageUrl: article.urlToImage ??
+                  'https://www.iisertvm.ac.in/assets/images/placeholder.jpg',
               height: MediaQuery.sizeOf(context).height * .25,
               width: double.infinity,
               fit: BoxFit.fill,
@@ -30,7 +34,7 @@ class NewsItem extends StatelessWidget {
             height: 4,
           ),
           Text(
-            'BBC NEWS',
+            article.source?.name ?? '',
             style:
                 titleSmallStyle?.copyWith(fontSize: 10, color: AppTheme.gray),
           ),
@@ -38,7 +42,7 @@ class NewsItem extends StatelessWidget {
             height: 4,
           ),
           Text(
-            'XSDFGJKDFGKL;',
+            article.title ?? '',
             style: titleSmallStyle?.copyWith(fontWeight: FontWeight.w500),
           ),
           SizedBox(
@@ -47,7 +51,7 @@ class NewsItem extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.bottomEnd,
             child: Text(
-              timeago.format(fifteenAgo),
+              timeago.format(article.publishedAt!),
               style:
                   titleSmallStyle?.copyWith(fontSize: 13, color: AppTheme.gray),
             ),
