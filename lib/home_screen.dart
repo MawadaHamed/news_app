@@ -4,7 +4,9 @@ import 'package:flutter_application_1/categries/catedories_detalis.dart';
 import 'package:flutter_application_1/categries/categories_grid.dart';
 import 'package:flutter_application_1/drawer/home_drawer.dart';
 import 'package:flutter_application_1/models/category_model.dart';
+import 'package:flutter_application_1/search_tab.dart';
 import 'package:flutter_application_1/settings/settings_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -33,6 +35,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? 'News App'
                       : 'Settings',
             ),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    String sourceId = 'bbc-news';
+                    showSearch(context: context, delegate: SearchTab(sourceId));
+                  },
+                  icon: Icon(Icons.search))
+            ],
           ),
           drawer: HomeDrawer(onItemSelected: onDrawerItemSelected),
           body: selectedCategory != null
